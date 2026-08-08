@@ -1,3 +1,6 @@
 .next
 node_modules
 pnpm-lock.yaml
+
+# 문서(docs/, CLAUDE.md)는 손으로 쓴 산문이라 표 정렬 등을 Prettier가 건드리지 않게 제외한다
+*.md

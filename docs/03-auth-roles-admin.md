@@ -81,7 +81,7 @@ export async function POST(req: Request) {
       updatedAt: new Date(),
       deletedAt: null,
     })
-    await applyBootstrapAdmin(decoded.uid, decoded.email)  // 아래 §4
+    await applyBootstrapAdmin(decoded.uid, decoded.email) // 아래 §4
   }
 
   const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn: FIVE_DAYS })
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE() {
-  (await cookies()).delete('__session')
+  ;(await cookies()).delete('__session')
   return Response.json({ ok: true })
 }
 ```
@@ -107,11 +107,11 @@ export async function DELETE() {
 
 `/[locale]/onboarding` — 카드 3장 중 하나를 고른다.
 
-| 카드 | 문구(ko) | 선택 후 |
-|---|---|---|
-| 설계사 | "고객을 관리합니다" / 보험설계사·영업직 | `role: 'agent'` → `/crm` |
+| 카드     | 문구(ko)                                      | 선택 후                                           |
+| -------- | --------------------------------------------- | ------------------------------------------------- |
+| 설계사   | "고객을 관리합니다" / 보험설계사·영업직       | `role: 'agent'` → `/crm`                          |
 | 소상공인 | "가게를 운영합니다" / 음식점·카페·농장·미용실 | `role: 'merchant'` → 매장 기본정보 입력 → `/home` |
-| 소비자 | "동네 소식이 궁금합니다" / 주민·관광객 | `role: 'consumer'` → 관심 반경 선택 → `/feed` |
+| 소비자   | "동네 소식이 궁금합니다" / 주민·관광객        | `role: 'consumer'` → 관심 반경 선택 → `/feed`     |
 
 **역할은 클라이언트가 직접 쓰지 않는다.** 반드시 서버 액션을 거친다.
 
@@ -125,7 +125,7 @@ export async function setRole(role: 'agent' | 'merchant' | 'consumer') {
   const { uid } = await requireSession()
   const ref = adminDb.collection('users').doc(uid)
   const snap = await ref.get()
-  if (snap.data()?.role) throw new Error('ROLE_ALREADY_SET')  // 임의 변경 차단
+  if (snap.data()?.role) throw new Error('ROLE_ALREADY_SET') // 임의 변경 차단
 
   await ref.update({ role, onboardedAt: new Date(), updatedAt: new Date() })
   await adminAuth.setCustomUserClaims(uid, {
@@ -189,7 +189,9 @@ export async function requireAdmin() {
 // 로그인 시 1회 실행
 async function applyBootstrapAdmin(uid: string, email?: string) {
   const allow = (process.env.ADMIN_BOOTSTRAP_EMAILS ?? '')
-    .split(',').map(s => s.trim().toLowerCase()).filter(Boolean)
+    .split(',')
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean)
   if (!email || !allow.includes(email.toLowerCase())) return
 
   await adminAuth.setCustomUserClaims(uid, {
@@ -216,7 +218,7 @@ import { getSession } from '@/lib/auth/session'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const s = await getSession()
-  if (!s?.isAdmin) notFound()   // 403 대신 404 — 관리자 경로의 존재 자체를 숨긴다
+  if (!s?.isAdmin) notFound() // 403 대신 404 — 관리자 경로의 존재 자체를 숨긴다
   return <AdminShell>{children}</AdminShell>
 }
 ```
@@ -229,8 +231,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
 ## 5. 미들웨어 (i18n과 합쳐짐)
 
+> **업데이트 (M1)**: Next.js 16부터 `middleware` 파일 컨벤션이 `proxy`로 대체됐다
+> (`middleware.ts` 는 deprecated 경고 발생). 파일명은 `src/proxy.ts` 이고, 내용·동작은 동일하다.
+
 ```ts
-// src/middleware.ts
+// src/proxy.ts
 import createIntlMiddleware from 'next-intl/middleware'
 import { NextRequest, NextResponse } from 'next/server'
 import { routing } from '@/lib/i18n/routing'
@@ -241,7 +246,7 @@ const PROTECTED = ['/crm', '/home', '/store', '/feed', '/admin', '/onboarding']
 
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-  const needsAuth = PROTECTED.some(p => pathname.includes(p))
+  const needsAuth = PROTECTED.some((p) => pathname.includes(p))
 
   if (needsAuth && !req.cookies.get('__session')) {
     const url = req.nextUrl.clone()
@@ -265,11 +270,11 @@ router.replace(`/${locale}`)
 
 ## 7. 에러 문구 (i18n 키)
 
-| 상황 | 키 | ko |
-|---|---|---|
-| 팝업 차단 | `auth.error.popupBlocked` | 팝업이 차단됐습니다. 다시 시도하면 새 창 대신 페이지 이동으로 진행합니다. |
-| 네트워크 | `auth.error.network` | 연결이 끊겼습니다. 네트워크를 확인하고 다시 시도하세요. |
-| 권한 없음 | `auth.error.forbidden` | 이 화면에 접근할 권한이 없습니다. |
-| 역할 미선택 | `auth.error.needsOnboarding` | 먼저 어떤 용도로 쓸지 선택해 주세요. |
+| 상황        | 키                           | ko                                                                        |
+| ----------- | ---------------------------- | ------------------------------------------------------------------------- |
+| 팝업 차단   | `auth.error.popupBlocked`    | 팝업이 차단됐습니다. 다시 시도하면 새 창 대신 페이지 이동으로 진행합니다. |
+| 네트워크    | `auth.error.network`         | 연결이 끊겼습니다. 네트워크를 확인하고 다시 시도하세요.                   |
+| 권한 없음   | `auth.error.forbidden`       | 이 화면에 접근할 권한이 없습니다.                                         |
+| 역할 미선택 | `auth.error.needsOnboarding` | 먼저 어떤 용도로 쓸지 선택해 주세요.                                      |
 
 에러는 사과하지 않고, 무엇이 일어났고 어떻게 하면 되는지만 말한다.

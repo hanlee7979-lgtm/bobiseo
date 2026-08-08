@@ -28,8 +28,46 @@
   --color-tier-a: var(--tier-a);
   --color-tier-b: var(--tier-b);
   --color-tier-c: var(--tier-c);
+  --color-tier-on: var(--tier-on);
 
   --font-sans: var(--font-pretendard);
+
+  --radius-card: var(--radius-card);
+  --radius-inner: var(--radius-inner);
+  --radius-chip: var(--radius-chip);
+  --radius-pill: var(--radius-pill);
+
+  /* 타이포그래피 스케일 (docs/04 §3). 웨이트는 별도 유틸(font-*)로 조합한다.
+     display 800 / title 700 / subtitle 600 / body 400 / label 600 / caption 500 / micro 600 */
+  --text-display: 28px;
+  --text-display--line-height: 34px;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-title: 20px;
+  --text-title--line-height: 28px;
+  --text-title--letter-spacing: -0.02em;
+
+  --text-subtitle: 16px;
+  --text-subtitle--line-height: 24px;
+  --text-subtitle--letter-spacing: -0.01em;
+
+  --text-body: 15px;
+  --text-body--line-height: 23px;
+  --text-body--letter-spacing: -0.01em;
+
+  --text-label: 13px;
+  --text-label--line-height: 18px;
+
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+
+  --text-micro: 11px;
+  --text-micro--line-height: 14px;
+  --text-micro--letter-spacing: 0.02em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 body {

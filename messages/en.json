@@ -1,0 +1,168 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "more": "More",
+    "search": "Search",
+    "close": "Close",
+    "retry": "Retry",
+    "loading": "Loading"
+  },
+  "nav": {
+    "home": "Home",
+    "crm": "CRM",
+    "interactions": "Interactions",
+    "schedule": "Schedule",
+    "messages": "Messages",
+    "stats": "Stats",
+    "settings": "Settings",
+    "feed": "Home",
+    "heroes": "Heroes",
+    "market": "Market",
+    "events": "Events",
+    "saved": "Saved",
+    "myPage": "My Page",
+    "notifications": "Notifications",
+    "write": "Write",
+    "myInfo": "My Info"
+  },
+  "auth": {
+    "signInWithGoogle": "Continue with Google",
+    "signOut": "Sign out",
+    "error": {
+      "popupBlocked": "The popup was blocked. Trying again will use a page redirect instead.",
+      "network": "Connection lost. Check your network and try again.",
+      "forbidden": "You don't have permission to view this screen.",
+      "needsOnboarding": "Please choose how you'll use the app first."
+    }
+  },
+  "onboarding": {
+    "title": "What will you use this for?",
+    "agent": { "title": "I manage customers", "desc": "Insurance agent · sales" },
+    "merchant": { "title": "I run a business", "desc": "Restaurant · cafe · farm · salon" },
+    "consumer": { "title": "I'm curious about the neighborhood", "desc": "Resident · tourist" }
+  },
+  "theme": {
+    "toggleLabel": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "palette": "Color theme",
+    "paletteName": {
+      "basalt": "Basalt",
+      "gyul": "Citrus",
+      "gotjawal": "Gotjawal",
+      "badang": "Badang"
+    }
+  },
+  "tier": { "S": "Tier S", "A": "Tier A", "B": "Tier B", "C": "Tier C" },
+  "crm": {
+    "title": "CRM",
+    "filterAll": "All {count}",
+    "filterTier": "{tier} {count}",
+    "sort": "Sort",
+    "bulkSms": "Bulk SMS",
+    "mapView": "Map view",
+    "recordConsult": "Record consult",
+    "newContact": "New contact",
+    "calendar": "Calendar",
+    "note": "Note",
+    "consultLog": "Consult log",
+    "empty": { "title": "No contacts yet", "action": "Add your first contact" },
+    "dueSoon": "{count} contacts are due for a follow-up"
+  },
+  "merchant": {
+    "greeting": "Great work today!",
+    "greetingSub": "A space to share and support one another",
+    "myStore": "My store",
+    "editModules": "Edit modules",
+    "signatureMenu": "Signature menu",
+    "popularMenu": "Popular menu",
+    "representativeMenu": "Featured menu",
+    "storeIntro": "About the store",
+    "viewMap": "View map",
+    "composerHint": "Share an update or a photo!",
+    "composer": {
+      "text": "Text",
+      "photo": "Photo",
+      "voice": "Voice",
+      "anonymous": "Post anonymously"
+    }
+  },
+  "anonymous": {
+    "roomName": "Running a Business is Hard",
+    "desc": "A space to share worries anonymously and support each other",
+    "liveCount": "{count} people talking right now",
+    "enter": "Enter",
+    "notice": "Business names, addresses, and personal info are automatically hidden. Reports are reviewed by staff."
+  },
+  "realty": {
+    "section": "Retail space for sale or lease",
+    "sectionSub": "Find your next storefront",
+    "rent": "Lease",
+    "sale": "Sale",
+    "deposit": "Deposit",
+    "monthly": "Monthly",
+    "pyeong": "{n} pyeong",
+    "floor": "Floor {n}"
+  },
+  "support": {
+    "section": "Government support & loans",
+    "sectionSub": "Explore support programs for small businesses",
+    "grant": "Grant",
+    "loan": "Loan",
+    "education": "Education",
+    "maxAmount": "Up to {amount}",
+    "rate": "{rate}% APR",
+    "alwaysOpen": "Open year-round",
+    "sourceNotice": "Check the official notice for exact terms.",
+    "viewSource": "View original notice"
+  },
+  "groupBuy": {
+    "section": "Group buys · Jeju deals",
+    "sectionSub": "Cheaper together",
+    "discountUpTo": "Up to {rate}% off",
+    "participants": "{count} joined",
+    "deadline": "{days} days left"
+  },
+  "aiTools": {
+    "section": "AI Tools",
+    "menuPoster": "Menu poster",
+    "themeSong": "Make a theme song",
+    "virtualStudio": "Virtual studio",
+    "virtualStudioSub": "Apparel · hair · nails · pets",
+    "freeWithAgent": "Free to use if you have an assigned agent.",
+    "paidWithoutAgent": "Assign an agent to unlock this for free."
+  },
+  "consumer": {
+    "brand": "LOCAL HERO",
+    "todayFresh": "Fresh from Jeju today",
+    "radius": "{km}km radius",
+    "discount": "{rate}% off",
+    "signature": "Signature",
+    "hours": "Hours",
+    "reservationRequired": "Reservation required"
+  },
+  "admin": {
+    "title": "Admin",
+    "banner": "Viewing with admin privileges",
+    "users": "Users",
+    "content": "Content",
+    "reports": "Reports",
+    "supportPrograms": "Support programs",
+    "auditLogs": "Audit logs"
+  },
+  "format": {
+    "currency": "₩{amount}",
+    "rating": "{rating} ({count})",
+    "reviewCount": "{count} reviews"
+  },
+  "kitchenSink": {
+    "title": "Kitchen Sink",
+    "colors": "Color tokens",
+    "typography": "Typography",
+    "components": "Components"
+  }
+}

@@ -2,23 +2,23 @@
 
 ## 1. 스택
 
-| 영역 | 선택 | 확정도 |
-|---|---|---|
-| 프레임워크 | Next.js **App Router** + TypeScript (strict) | 확정 |
-| 패키지 매니저 | pnpm | 확정 |
-| 배포 | Vercel | 확정 |
-| 스타일 | Tailwind CSS + CSS 변수 토큰 | 확정 |
-| UI 프리미티브 | Radix UI (필요한 것만 개별 설치) | 권장 |
-| 아이콘 | lucide-react | 확정 |
-| 인증 | Firebase Authentication — Google Provider | 확정 |
-| DB | Cloud Firestore | 확정 |
-| 스토리지 | Firebase Storage | 확정 |
-| 서버 권한 | firebase-admin (Route Handler / Server Action 전용) | 확정 |
-| 분석 | Firebase Analytics (`measurementId`) | 확정 (M2, 2026-08-08 사용자 요청으로 스코프 추가) |
-| 테마 | next-themes | 확정 |
-| 다국어 | next-intl | 확정 |
-| 폼 | react-hook-form + zod | 권장 |
-| 지도 | 미확정 — `docs/12` 참조 | **미확정** |
+| 영역          | 선택                                                | 확정도                                            |
+| ------------- | --------------------------------------------------- | ------------------------------------------------- |
+| 프레임워크    | Next.js **App Router** + TypeScript (strict)        | 확정                                              |
+| 패키지 매니저 | pnpm                                                | 확정                                              |
+| 배포          | Vercel                                              | 확정                                              |
+| 스타일        | Tailwind CSS + CSS 변수 토큰                        | 확정                                              |
+| UI 프리미티브 | Radix UI (필요한 것만 개별 설치)                    | 권장                                              |
+| 아이콘        | lucide-react                                        | 확정                                              |
+| 인증          | Firebase Authentication — Google Provider           | 확정                                              |
+| DB            | Cloud Firestore                                     | 확정                                              |
+| 스토리지      | Firebase Storage                                    | 확정                                              |
+| 서버 권한     | firebase-admin (Route Handler / Server Action 전용) | 확정                                              |
+| 분석          | Firebase Analytics (`measurementId`)                | 확정 (M2, 2026-08-08 사용자 요청으로 스코프 추가) |
+| 테마          | next-themes                                         | 확정                                              |
+| 다국어        | next-intl                                           | 확정                                              |
+| 폼            | react-hook-form + zod                               | 권장                                              |
+| 지도          | 미확정 — `docs/12` 참조                             | **미확정**                                        |
 
 > **버전 고정 규칙**: 각 패키지 버전은 설치 시점에 `pnpm add <pkg>` 로 최신 안정판을 받고,
 > `package.json` 에 정확한 버전을 기록한다. 이 문서에 버전을 적어두지 않는 이유는
@@ -148,12 +148,12 @@ privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n')
 
 ## 5. 렌더링 전략
 
-| 화면 | 전략 | 이유 |
-|---|---|---|
-| 공개 매장 페이지 `/s/[storeId]` | 서버 컴포넌트 + ISR | SEO 필요, 콘텐츠 갱신 잦음 |
-| 소비자 피드 | 서버 컴포넌트 초기 로드 + 클라이언트 무한스크롤 | 위치 필터가 클라이언트 의존 |
-| 설계사 CRM | 클라이언트 (Firestore 실시간 구독) | 개인 데이터, 실시간성 |
-| 어드민 | 서버 컴포넌트 + Admin SDK | 권한 격리 |
+| 화면                            | 전략                                            | 이유                        |
+| ------------------------------- | ----------------------------------------------- | --------------------------- |
+| 공개 매장 페이지 `/s/[storeId]` | 서버 컴포넌트 + ISR                             | SEO 필요, 콘텐츠 갱신 잦음  |
+| 소비자 피드                     | 서버 컴포넌트 초기 로드 + 클라이언트 무한스크롤 | 위치 필터가 클라이언트 의존 |
+| 설계사 CRM                      | 클라이언트 (Firestore 실시간 구독)              | 개인 데이터, 실시간성       |
+| 어드민                          | 서버 컴포넌트 + Admin SDK                       | 권한 격리                   |
 
 ## 6. Firebase 클라이언트 초기화 패턴
 

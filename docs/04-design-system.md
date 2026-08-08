@@ -25,37 +25,37 @@
 /* src/styles/tokens.css */
 :root {
   /* 배경 계층 */
-  --bg:            /* 페이지 최하단 배경 */;
-  --surface:       /* 카드 기본면 */;
-  --surface-2:     /* 카드 안 중첩면 (메뉴 썸네일 배경 등) */;
-  --surface-raised:/* 떠 있는 시트, 팝오버 */;
+  --bg: /* 페이지 최하단 배경 */;
+  --surface: /* 카드 기본면 */;
+  --surface-2: /* 카드 안 중첩면 (메뉴 썸네일 배경 등) */;
+  --surface-raised: /* 떠 있는 시트, 팝오버 */;
 
   /* 텍스트 */
-  --text:          /* 본문 */;
-  --text-muted:    /* 보조 설명, 캡션 */;
-  --text-faint:    /* 비활성 */;
-  --text-on-accent:/* 강조색 위 텍스트 */;
+  --text: /* 본문 */;
+  --text-muted: /* 보조 설명, 캡션 */;
+  --text-faint: /* 비활성 */;
+  --text-on-accent: /* 강조색 위 텍스트 */;
 
   /* 선 */
-  --border:        /* 기본 경계선 */;
+  --border: /* 기본 경계선 */;
   --border-strong: /* 활성 카드 링 */;
 
   /* 강조 */
-  --accent:        /* 팔레트별 주강조색 */;
-  --accent-soft:   /* 강조색 12% 배경 */;
-  --accent-ring:   /* 활성 카드 글로우 */;
+  --accent: /* 팔레트별 주강조색 */;
+  --accent-soft: /* 강조색 12% 배경 */;
+  --accent-ring: /* 활성 카드 글로우 */;
 
   /* 상태 */
-  --success: #2FA36B;
-  --warning: #F2B441;
-  --danger:  #E5484D;
-  --info:    #3B82F6;
+  --success: #2fa36b;
+  --warning: #f2b441;
+  --danger: #e5484d;
+  --info: #3b82f6;
 
   /* 등급 (팔레트와 무관하게 고정) */
-  --tier-s: #2FA36B;   /* S등급 — 에메랄드 */
-  --tier-a: #E5484D;   /* A등급 — 코럴 레드 */
-  --tier-b: #F2B441;   /* B등급 — 앰버 */
-  --tier-c: #4CAF6D;   /* C등급 — 그린 */
+  --tier-s: #2fa36b; /* S등급 — 에메랄드 */
+  --tier-a: #e5484d; /* A등급 — 코럴 레드 */
+  --tier-b: #f2b441; /* B등급 — 앰버 */
+  --tier-c: #4caf6d; /* C등급 — 그린 */
 }
 ```
 
@@ -67,80 +67,150 @@
 이미지의 4가지 색상 변형에 대응한다. 각 팔레트는 light / dark 두 모드를 갖는다.
 `data-palette` × `.dark` 조합으로 적용한다.
 
-| ID | 이름(ko) | 유래 | 강조색 |
-|---|---|---|---|
-| `basalt` | 현무암 | ref-03 흑/백 대비, ref-04 앰버 글로우 | `#F0A03C` |
-| `gyul` | 감귤 | ref-01 웜 브라운·크림, ref-02 샌드 | `#E07A2F` |
-| `gotjawal` | 곶자왈 | ref-01 딥그린, ref-02 그린 | `#2E9E63` |
-| `badang` | 바당 | ref-02·03 네이비, ref-01·04 퍼플 | `#6C5CE7` |
+| ID         | 이름(ko) | 유래                                  | 강조색    |
+| ---------- | -------- | ------------------------------------- | --------- |
+| `basalt`   | 현무암   | ref-03 흑/백 대비, ref-04 앰버 글로우 | `#F0A03C` |
+| `gyul`     | 감귤     | ref-01 웜 브라운·크림, ref-02 샌드    | `#E07A2F` |
+| `gotjawal` | 곶자왈   | ref-01 딥그린, ref-02 그린            | `#2E9E63` |
+| `badang`   | 바당     | ref-02·03 네이비, ref-01·04 퍼플      | `#6C5CE7` |
 
 기본값: `basalt` + `system`(OS 설정 따름).
 
 ```css
 /* 기본: basalt */
-:root, [data-palette='basalt'] {
-  --bg: #FBFAF8;  --surface: #FFFFFF;  --surface-2: #F4F2EF;  --surface-raised: #FFFFFF;
-  --text: #17140F; --text-muted: #6B655C; --text-faint: #A8A29A;
-  --border: #E7E3DC; --border-strong: #D5CFC5;
-  --accent: #D4801F; --accent-soft: rgba(212,128,31,.12); --accent-ring: rgba(212,128,31,.35);
-  --text-on-accent: #FFFFFF;
+:root,
+[data-palette='basalt'] {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --surface-2: #f4f2ef;
+  --surface-raised: #ffffff;
+  --text: #17140f;
+  --text-muted: #6b655c;
+  --text-faint: #a8a29a;
+  --border: #e7e3dc;
+  --border-strong: #d5cfc5;
+  --accent: #d4801f;
+  --accent-soft: rgba(212, 128, 31, 0.12);
+  --accent-ring: rgba(212, 128, 31, 0.35);
+  --text-on-accent: #ffffff;
 }
-.dark[data-palette='basalt'], .dark {
-  --bg: #0B0A09;  --surface: #16130F;  --surface-2: #201B15;  --surface-raised: #221D17;
-  --text: #F5F1EA; --text-muted: #A79E92; --text-faint: #6E655B;
-  --border: #2A241D; --border-strong: #4A3F32;
-  --accent: #F0A03C; --accent-soft: rgba(240,160,60,.14); --accent-ring: rgba(240,160,60,.45);
-  --text-on-accent: #1A1200;
+.dark[data-palette='basalt'],
+.dark {
+  --bg: #0b0a09;
+  --surface: #16130f;
+  --surface-2: #201b15;
+  --surface-raised: #221d17;
+  --text: #f5f1ea;
+  --text-muted: #a79e92;
+  --text-faint: #6e655b;
+  --border: #2a241d;
+  --border-strong: #4a3f32;
+  --accent: #f0a03c;
+  --accent-soft: rgba(240, 160, 60, 0.14);
+  --accent-ring: rgba(240, 160, 60, 0.45);
+  --text-on-accent: #1a1200;
 }
 
 [data-palette='gyul'] {
-  --bg: #F7F1E7;  --surface: #FFFDF9;  --surface-2: #F0E7DA;  --surface-raised: #FFFDF9;
-  --text: #2A1D12; --text-muted: #7A6A58; --text-faint: #B0A08C;
-  --border: #E4D8C6; --border-strong: #CDBBA1;
-  --accent: #E07A2F; --accent-soft: rgba(224,122,47,.12); --accent-ring: rgba(224,122,47,.35);
-  --text-on-accent: #FFFFFF;
+  --bg: #f7f1e7;
+  --surface: #fffdf9;
+  --surface-2: #f0e7da;
+  --surface-raised: #fffdf9;
+  --text: #2a1d12;
+  --text-muted: #7a6a58;
+  --text-faint: #b0a08c;
+  --border: #e4d8c6;
+  --border-strong: #cdbba1;
+  --accent: #e07a2f;
+  --accent-soft: rgba(224, 122, 47, 0.12);
+  --accent-ring: rgba(224, 122, 47, 0.35);
+  --text-on-accent: #ffffff;
 }
 .dark[data-palette='gyul'] {
-  --bg: #1A100A;  --surface: #241609;  --surface-2: #33200F;  --surface-raised: #2C1B0D;
-  --text: #F6EADC; --text-muted: #B49A80; --text-faint: #7A6450;
-  --border: #3B2715; --border-strong: #6A4622;
-  --accent: #F3A45A; --accent-soft: rgba(243,164,90,.14); --accent-ring: rgba(243,164,90,.45);
-  --text-on-accent: #1A1000;
+  --bg: #1a100a;
+  --surface: #241609;
+  --surface-2: #33200f;
+  --surface-raised: #2c1b0d;
+  --text: #f6eadc;
+  --text-muted: #b49a80;
+  --text-faint: #7a6450;
+  --border: #3b2715;
+  --border-strong: #6a4622;
+  --accent: #f3a45a;
+  --accent-soft: rgba(243, 164, 90, 0.14);
+  --accent-ring: rgba(243, 164, 90, 0.45);
+  --text-on-accent: #1a1000;
 }
 
 [data-palette='gotjawal'] {
-  --bg: #F3F8F3;  --surface: #FFFFFF;  --surface-2: #E8F2E9;
-  --text: #12211A; --text-muted: #5C7064; --text-faint: #9AAB9F;
-  --border: #D8E6DA; --border-strong: #B4CDB9;
-  --accent: #2E9E63; --accent-soft: rgba(46,158,99,.12); --accent-ring: rgba(46,158,99,.32);
-  --text-on-accent: #FFFFFF;
+  --bg: #f3f8f3;
+  --surface: #ffffff;
+  --surface-2: #e8f2e9;
+  --text: #12211a;
+  --text-muted: #5c7064;
+  --text-faint: #9aab9f;
+  --border: #d8e6da;
+  --border-strong: #b4cdb9;
+  --accent: #2e9e63;
+  --accent-soft: rgba(46, 158, 99, 0.12);
+  --accent-ring: rgba(46, 158, 99, 0.32);
+  --text-on-accent: #ffffff;
 }
 .dark[data-palette='gotjawal'] {
-  --bg: #08120C;  --surface: #101E16;  --surface-2: #172B1E;
-  --text: #E9F3EB; --text-muted: #8FA795; --text-faint: #5D7264;
-  --border: #1E3527; --border-strong: #2F5C40;
-  --accent: #4FD18B; --accent-soft: rgba(79,209,139,.14); --accent-ring: rgba(79,209,139,.4);
-  --text-on-accent: #05180D;
+  --bg: #08120c;
+  --surface: #101e16;
+  --surface-2: #172b1e;
+  --text: #e9f3eb;
+  --text-muted: #8fa795;
+  --text-faint: #5d7264;
+  --border: #1e3527;
+  --border-strong: #2f5c40;
+  --accent: #4fd18b;
+  --accent-soft: rgba(79, 209, 139, 0.14);
+  --accent-ring: rgba(79, 209, 139, 0.4);
+  --text-on-accent: #05180d;
 }
 
 [data-palette='badang'] {
-  --bg: #F5F5FB;  --surface: #FFFFFF;  --surface-2: #ECECF7;
-  --text: #14152B; --text-muted: #5F6280; --text-faint: #9B9DB5;
-  --border: #E0E0EF; --border-strong: #C2C3E0;
-  --accent: #5B4BD6; --accent-soft: rgba(91,75,214,.10); --accent-ring: rgba(91,75,214,.30);
-  --text-on-accent: #FFFFFF;
+  --bg: #f5f5fb;
+  --surface: #ffffff;
+  --surface-2: #ececf7;
+  --text: #14152b;
+  --text-muted: #5f6280;
+  --text-faint: #9b9db5;
+  --border: #e0e0ef;
+  --border-strong: #c2c3e0;
+  --accent: #5b4bd6;
+  --accent-soft: rgba(91, 75, 214, 0.1);
+  --accent-ring: rgba(91, 75, 214, 0.3);
+  --text-on-accent: #ffffff;
 }
 .dark[data-palette='badang'] {
-  --bg: #090B1A;  --surface: #121531;  --surface-2: #1B2044;
-  --text: #ECEDF8; --text-muted: #969AC0; --text-faint: #64688C;
-  --border: #232852; --border-strong: #3B4288;
-  --accent: #8B7CF6; --accent-soft: rgba(139,124,246,.16); --accent-ring: rgba(139,124,246,.45);
-  --text-on-accent: #0B0820;
+  --bg: #090b1a;
+  --surface: #121531;
+  --surface-2: #1b2044;
+  --text: #ecedf8;
+  --text-muted: #969ac0;
+  --text-faint: #64688c;
+  --border: #232852;
+  --border-strong: #3b4288;
+  --accent: #8b7cf6;
+  --accent-soft: rgba(139, 124, 246, 0.16);
+  --accent-ring: rgba(139, 124, 246, 0.45);
+  --text-on-accent: #0b0820;
 }
 ```
 
 > ⚠️ 위 hex는 이미지에서 눈으로 읽은 근사치다. 구현 후 실제 화면과 대조해 조정할 것.
 > 모든 조합에 대해 **본문 대비 4.5:1, 큰 텍스트 3:1** 을 만족하는지 검사한다.
+
+> **업데이트 (M1, 2026-08-08)**: kitchen-sink 페이지에서 8조합 대비를 실측한 결과,
+> 라이트 모드 `basalt`/`gyul`/`gotjawal`의 `--accent`(흰 텍스트 버튼 배경)가 4.5:1에 못 미쳤다
+> (각각 3.04 / 3.00 / 3.39:1). 같은 색상(hue)을 유지한 채 명도만 낮춰 4.5:1 이상으로 조정했다:
+> `basalt` `#D4801F`→`#AA6619`, `gyul` `#E07A2F`→`#B75D1B`, `gotjawal` `#2E9E63`→`#278654`.
+> `accent-soft`/`accent-ring`의 rgba도 새 accent 값 기준으로 다시 계산했다. `badang`과 모든 다크 모드는
+> 이미 기준을 만족해 변경하지 않았다. 실제 화면(사진 위 텍스트, 캐러셀 링 등)과 대조해 색감이
+> 과하게 탁해 보이면 추가 조정이 필요할 수 있다.
 
 ### 2.3 Tailwind 연결
 
@@ -201,19 +271,20 @@
 (폰트를 늘리면 웹폰트 용량이 커지고 한글은 특히 무겁다.)
 
 ```css
---font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
-             'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+--font-sans:
+  'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+  'Malgun Gothic', system-ui, sans-serif;
 ```
 
-| 역할 | 크기/행간 | 웨이트 | 자간 | 쓰는 곳 |
-|---|---|---|---|---|
-| `display` | 28 / 34 | 800 | -0.03em | 히어로 카드 상호명 ("제주 해녀밥상") |
-| `title` | 20 / 28 | 700 | -0.02em | 섹션 제목, 화면 타이틀 ("CRM") |
-| `subtitle` | 16 / 24 | 600 | -0.01em | 카드 인물명 ("김민수") |
-| `body` | 15 / 23 | 400 | -0.01em | 본문, 매장 소개 |
-| `label` | 13 / 18 | 600 | 0 | 버튼, 배지, 메뉴명 |
-| `caption` | 12 / 16 | 500 | 0 | 시간, 주소, 보조정보 |
-| `micro` | 11 / 14 | 600 | 0.02em | 사이드레일 라벨, 탭 라벨 |
+| 역할       | 크기/행간 | 웨이트 | 자간    | 쓰는 곳                              |
+| ---------- | --------- | ------ | ------- | ------------------------------------ |
+| `display`  | 28 / 34   | 800    | -0.03em | 히어로 카드 상호명 ("제주 해녀밥상") |
+| `title`    | 20 / 28   | 700    | -0.02em | 섹션 제목, 화면 타이틀 ("CRM")       |
+| `subtitle` | 16 / 24   | 600    | -0.01em | 카드 인물명 ("김민수")               |
+| `body`     | 15 / 23   | 400    | -0.01em | 본문, 매장 소개                      |
+| `label`    | 13 / 18   | 600    | 0       | 버튼, 배지, 메뉴명                   |
+| `caption`  | 12 / 16   | 500    | 0       | 시간, 주소, 보조정보                 |
+| `micro`    | 11 / 14   | 600    | 0.02em  | 사이드레일 라벨, 탭 라벨             |
 
 **숫자 규칙**: 가격·평수·보증금·평점 등 모든 수치는 `font-variant-numeric: tabular-nums`.
 리스트에서 자릿수가 흔들리지 않게 한다. (`.tabular` 유틸 클래스 하나 만들어 재사용)
@@ -226,16 +297,21 @@
 ## 4. 레이아웃 · 간격 · 모서리
 
 ```css
---radius-card: 20px;   /* 카드 */
---radius-inner: 14px;  /* 카드 안 썸네일, 메뉴 이미지 */
---radius-chip: 10px;   /* 필터칩, 작은 배지 */
---radius-pill: 999px;  /* 등급 배지, 원형 버튼 */
+--radius-card: 20px; /* 카드 */
+--radius-inner: 14px; /* 카드 안 썸네일, 메뉴 이미지 */
+--radius-chip: 10px; /* 필터칩, 작은 배지 */
+--radius-pill: 999px; /* 등급 배지, 원형 버튼 */
 
---gap-1: 4px;  --gap-2: 8px;  --gap-3: 12px;
---gap-4: 16px; --gap-5: 20px; --gap-6: 24px; --gap-8: 32px;
+--gap-1: 4px;
+--gap-2: 8px;
+--gap-3: 12px;
+--gap-4: 16px;
+--gap-5: 20px;
+--gap-6: 24px;
+--gap-8: 32px;
 
---page-x: 16px;        /* 모바일 좌우 여백 */
---section-y: 24px;     /* 섹션 사이 세로 간격 */
+--page-x: 16px; /* 모바일 좌우 여백 */
+--section-y: 24px; /* 섹션 사이 세로 간격 */
 ```
 
 - 화면 좌우 여백 16px 고정. 카드 내부 패딩 16px.
@@ -245,11 +321,11 @@
 
 ### 반응형
 
-| 브레이크포인트 | 레이아웃 |
-|---|---|
-| ~ 640px | 모바일. 하단 탭바 (소상공인/소비자) 또는 좌측 아이콘 레일 (CRM) |
-| 640 ~ 1024px | 2열 카드 그리드, 레일 유지 |
-| 1024px ~ | 좌측 레일 확장(라벨 표시) + 본문 최대폭 1120px 중앙 정렬. 3열 그리드 |
+| 브레이크포인트 | 레이아웃                                                             |
+| -------------- | -------------------------------------------------------------------- |
+| ~ 640px        | 모바일. 하단 탭바 (소상공인/소비자) 또는 좌측 아이콘 레일 (CRM)      |
+| 640 ~ 1024px   | 2열 카드 그리드, 레일 유지                                           |
+| 1024px ~       | 좌측 레일 확장(라벨 표시) + 본문 최대폭 1120px 중앙 정렬. 3열 그리드 |
 
 원 제안서에 "모바일 우선 입력 / PC 중심 관리" 이원화가 명시돼 있다.
 → **입력 UI(컴포저, 사진 업로드)는 모바일 최적화, 통계·지도·관리 화면은 데스크톱 최적화.**
@@ -282,6 +358,7 @@ ref-01(내 매장), ref-04(LOCAL HERO)에 나오는 그 카드.
 ```
 
 구현 규칙:
+
 - 카드 비율 **3:4**. 사진은 `object-cover`, 인물 상체가 상단 60%에 오도록 `object-position: 50% 25%`.
 - 텍스트 가독성: 하단 55%에 스크림 `linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.55) 35%, transparent 70%)`.
   **사진 위 텍스트는 항상 흰색 고정** (`--text` 아님). 라이트 모드에서도 마찬가지 — 사진은 어둡기 때문.
@@ -294,7 +371,7 @@ ref-01(내 매장), ref-04(LOCAL HERO)에 나오는 그 카드.
 ### 5.2 `TierBadge`
 
 ```tsx
-<TierBadge tier="A" />   // 배경 var(--tier-a), 텍스트 흰색, pill, 12px/700, padding 4px 10px
+<TierBadge tier="A" /> // 배경 var(--tier-a), 텍스트 흰색, pill, 12px/700, padding 4px 10px
 ```
 
 라벨은 i18n 키 `tier.S`~`tier.C` → ko: `S등급` / en: `Tier S`.
@@ -330,6 +407,7 @@ ref-01(내 매장), ref-04(LOCAL HERO)에 나오는 그 카드.
 │ (내용)                                        │
 └──────────────────────────────────────────────┘
 ```
+
 제목 좌측, "더보기 ›" 우측 (label, `--text-muted`). 제목 아래 12px.
 
 ### 5.6 `ComposerSheet` — ref-01 하단 시트 ★ 제품의 핵심 UI
@@ -345,6 +423,7 @@ ref-01(내 매장), ref-04(LOCAL HERO)에 나오는 그 카드.
 └──────────────────────────────────────────────┘
                     ( ✕ )                        ← 닫기 FAB, accent 배경
 ```
+
 - 화면 하단 고정. `--surface-raised`, 상단 모서리만 20px 라운드.
 - 4개 액션 아이콘: 각각 `--surface-2` 배경의 작은 타일 + 라벨 11/600.
 - 전송 버튼은 내용이 있을 때만 `--accent`, 비어 있으면 `--text-faint`.
@@ -391,10 +470,10 @@ export default function RootLayout({ children, params }) {
     <html lang={params.locale} suppressHydrationWarning>
       <body>
         <ThemeProvider
-          attribute="class"          // .dark 클래스 부착
+          attribute="class" // .dark 클래스 부착
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange  // 전환 시 색 애니메이션으로 인한 잔상 방지
+          disableTransitionOnChange // 전환 시 색 애니메이션으로 인한 잔상 방지
         >
           {children}
         </ThemeProvider>
@@ -447,13 +526,13 @@ export function ThemeToggle() {
 
 ### 6.4 다크/라이트에서 반드시 다르게 처리할 것
 
-| 요소 | 라이트 | 다크 |
-|---|---|---|
-| 카드 구분 | 그림자 사용 | 그림자 대신 `--border` |
-| 사진 위 스크림 | 동일하게 진하게 유지 | 동일 |
-| 등급 배지 | 채도 그대로 | 채도 그대로 (변경 금지) |
-| 강조색 링 글로우 | 약하게(0.18 alpha) | 강하게(0.45 alpha) |
-| 이미지 | 그대로 | `filter: brightness(.95)` 로 눈부심 완화 |
+| 요소             | 라이트               | 다크                                     |
+| ---------------- | -------------------- | ---------------------------------------- |
+| 카드 구분        | 그림자 사용          | 그림자 대신 `--border`                   |
+| 사진 위 스크림   | 동일하게 진하게 유지 | 동일                                     |
+| 등급 배지        | 채도 그대로          | 채도 그대로 (변경 금지)                  |
+| 강조색 링 글로우 | 약하게(0.18 alpha)   | 강하게(0.45 alpha)                       |
+| 이미지           | 그대로               | `filter: brightness(.95)` 로 눈부심 완화 |
 
 ---
 

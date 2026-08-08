@@ -2,7 +2,11 @@ import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
-import { type Analytics, isSupported as isAnalyticsSupported, getAnalytics } from 'firebase/analytics'
+import {
+  type Analytics,
+  isSupported as isAnalyticsSupported,
+  getAnalytics,
+} from 'firebase/analytics'
 
 const config = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
