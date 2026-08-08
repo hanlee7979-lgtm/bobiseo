@@ -1,7 +1,7 @@
 import { getApps, initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
-import { getStorage } from 'firebase/storage'
+import { connectAuthEmulator, getAuth } from 'firebase/auth'
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
+import { connectStorageEmulator, getStorage } from 'firebase/storage'
 import {
   type Analytics,
   isSupported as isAnalyticsSupported,
@@ -18,10 +18,19 @@ const config = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
-export const app = getApps().length ? getApps()[0] : initializeApp(config)
+const alreadyInitialized = getApps().length > 0
+
+export const app = alreadyInitialized ? getApps()[0] : initializeApp(config)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
 export const storage = getStorage(app)
+
+// 에뮬레이터 연결은 앱 인스턴스당 한 번만 가능하므로, 이미 초기화된 경우 다시 붙이지 않는다.
+if (!alreadyInitialized && process.env.NEXT_PUBLIC_USE_EMULATOR === 'true') {
+  connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true })
+  connectFirestoreEmulator(db, '127.0.0.1', 8080)
+  connectStorageEmulator(storage, '127.0.0.1', 9199)
+}
 
 let analyticsPromise: Promise<Analytics | null> | null = null
 

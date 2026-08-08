@@ -1,0 +1,99 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function uid() { return request.auth.uid; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    function role() { return request.auth.token.role; }
+
+    match /users/{userId} {
+      allow read: if uid() == userId || isAdmin();
+      allow create: if uid() == userId;
+      // role / isAdmin / agentId는 클라이언트가 못 바꾼다. 서버(Admin SDK)만 변경.
+      allow update: if (uid() == userId
+                        && !request.resource.data.diff(resource.data)
+                             .affectedKeys().hasAny(['role', 'isAdmin', 'agentId']))
+                      || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /contacts/{contactId} {
+      allow read, update, delete: if isAdmin()
+        || (signedIn() && resource.data.ownerAgentId == uid());
+      allow create: if signedIn() && role() == 'agent'
+        && request.resource.data.ownerAgentId == uid();
+
+      match /interactions/{id} {
+        allow read, write: if isAdmin()
+          || (signedIn()
+              && get(/databases/$(database)/documents/contacts/$(contactId))
+                   .data.ownerAgentId == uid());
+      }
+    }
+
+    match /stores/{storeId} {
+      allow read: if resource.data.isPublic == true
+                  || isAdmin()
+                  || (signedIn() && resource.data.ownerUid == uid());
+      allow create: if signedIn() && role() in ['agent', 'merchant'];
+      allow update, delete: if isAdmin()
+        || (signedIn() && resource.data.ownerUid == uid())
+        || (signedIn() && resource.data.createdByAgentId == uid());
+
+      match /{sub=**} {
+        allow read: if get(/databases/$(database)/documents/stores/$(storeId)).data.isPublic == true
+                    || isAdmin();
+        allow write: if isAdmin()
+          || (signedIn()
+              && get(/databases/$(database)/documents/stores/$(storeId)).data.ownerUid == uid());
+      }
+    }
+
+    match /posts/{postId} {
+      allow read: if (resource.data.visibility == 'public' && resource.data.status == 'active')
+                  || isAdmin()
+                  || (signedIn() && resource.data.authorUid == uid());
+      allow create: if signedIn() && request.resource.data.authorUid == uid();
+      allow update: if isAdmin() || (signedIn() && resource.data.authorUid == uid());
+      allow delete: if isAdmin();
+    }
+
+    match /anonymousPosts/{postId} {
+      // authorUid 필드가 존재하므로 클라이언트 직접 read를 금지한다.
+      // 읽기는 서버(Route Handler)가 Admin SDK로 필드를 걸러 내려준다.
+      allow read: if false;
+      allow create: if signedIn();
+      allow update, delete: if false;
+    }
+
+    match /listings/{id} {
+      allow read: if resource.data.status == 'active' || isAdmin();
+      allow create: if signedIn();
+      allow update, delete: if isAdmin()
+        || (signedIn() && resource.data.submittedByUid == uid());
+    }
+
+    match /supportPrograms/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /groupBuys/{id}       { allow read: if true; allow write: if isAdmin(); }
+
+    match /coupons/{id} {
+      allow read: if true;
+      allow write: if isAdmin() || (signedIn() && role() == 'merchant');
+    }
+    match /couponIssues/{id} {
+      allow read:   if isAdmin() || (signedIn() && resource.data.userUid == uid());
+      allow create: if signedIn() && request.resource.data.userUid == uid();
+      allow update: if isAdmin() || (signedIn() && role() == 'merchant');
+    }
+
+    match /reports/{id} {
+      allow create: if signedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /auditLogs/{id} { allow read: if isAdmin(); allow write: if false; }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

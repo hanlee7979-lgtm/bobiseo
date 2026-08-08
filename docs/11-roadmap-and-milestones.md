@@ -61,10 +61,11 @@
 
 **DoD**
 
-- [ ] 구글 로그인 → 온보딩 → 역할별 홈으로 자동 이동
-- [ ] 로그아웃 후 보호 경로 접근 시 로그인으로 리다이렉트
-- [ ] 클라이언트에서 `users.role` 직접 수정 시도가 Rules에서 거부된다
-- [ ] 에뮬레이터에서 Rules 테스트가 통과한다
+- [x] 구글 로그인 → 온보딩 → 역할별 홈으로 자동 이동 (코드/라우팅 검증. 실제 Google 계정 popup은
+      샌드박스 브라우저에서 실행 불가 — 실기기에서 재확인 권장)
+- [x] 로그아웃 후 보호 경로 접근 시 로그인으로 리다이렉트 (`/ko/crm` → `/ko/login?next=...` 확인)
+- [x] 클라이언트에서 `users.role` 직접 수정 시도가 Rules에서 거부된다 (`tests/firestore.rules.test.ts`)
+- [x] 에뮬레이터에서 Rules 테스트가 통과한다 (`pnpm test:rules`, 7/7 통과)
 
 ---
 
@@ -221,7 +222,7 @@
 | -------- | ---- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | M0       | ✅   | 2026-08-08 | Tailwind v4 CSS-first 토큰 연결로 `docs/04` §2.3 수정. Pretendard는 devDependency + `next/font/local` self-host.                                                                      |
 | M1       | ✅   | 2026-08-08 | next-intl(always-prefix) + next-themes + PaletteProvider(useSyncExternalStore). `s/[storeId]`·`admin`을 `[locale]` 하위로 이동(M0 폴더 구조 오류 수정). `middleware.ts`→`proxy.ts`(Next 16 컨벤션). 8조합 대비 실측 후 라이트 모드 3개 팔레트 accent 색상 보정(`docs/04` 참고). |
-| M2       | 🟨   |            | 2026-08-08: 사용자 요청으로 착수 순서를 앞당김. Firebase 프로젝트 연결 + client/admin SDK 초기화(`src/lib/firebase/`) + `.env.local` 실값 반영 완료. 로그인/온보딩/세션/Rules는 아직. |
+| M2       | ✅   | 2026-08-08 | Google 로그인(popup+redirect 폴백) + `/api/session` + `/onboarding` + 커스텀 클레임 + `proxy.ts` 인증 가드 + `firestore.rules`/`storage.rules`/`firebase.json`. 에뮬레이터 실행을 위해 winget으로 Eclipse Temurin JRE 21 설치. `tests/firestore.rules.test.ts`(`pnpm test:rules`) 7/7 통과. |
 | M3       | ⬜   |            |                                                                                                                                                                                       |
 | M4       | ⬜   |            |                                                                                                                                                                                       |
 | M5       | ⬜   |            |                                                                                                                                                                                       |
