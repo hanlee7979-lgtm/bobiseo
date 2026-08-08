@@ -7,3 +7,9 @@ allowBuilds:
   re2: true
   sharp: false
   unrs-resolver: false
+
+# jwks-rsa(firebase-admin의 의존성)가 jose@6을 require()하는데,
+# jose v6부터 CJS export가 빠져 ERR_REQUIRE_ESM으로 프로덕션(Node 22 미만 런타임)에서 깨진다.
+# jose v5는 CJS/ESM 둘 다 지원하므로 강제로 낮춘다.
+overrides:
+  jose: '5'

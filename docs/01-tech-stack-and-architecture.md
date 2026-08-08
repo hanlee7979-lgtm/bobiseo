@@ -40,6 +40,13 @@
 export const runtime = 'nodejs'
 ```
 
+> **배포 중 발견한 이슈 (M2, 2026-08-08)**: `firebase-admin` → `jwks-rsa` → `jose@6` 의존성 체인에서
+> `jose` v6부터 CJS export가 빠져 순수 ESM 전용이 됐다. `jwks-rsa`는 이걸 `require()`로 불러오는데,
+> Node 22.12 미만 런타임(당시 Vercel 배포 환경)에서는 `ERR_REQUIRE_ESM`으로 죽는다. 로컬(Node 24)은
+> `require(esm)`을 지원해서 재현이 안 됐고 Vercel에서만 500이 났다. `pnpm-workspace.yaml`의
+> `overrides.jose: '5'` 로 강제 고정해서 해결했다 (`jose` v5는 CJS/ESM 둘 다 지원). Firebase Admin SDK를
+> 새로 추가하거나 업데이트할 때 이 조합이 다시 깨질 수 있으니 배포 후 반드시 실제 요청으로 확인할 것.
+
 ## 3. 폴더 구조
 
 ```
