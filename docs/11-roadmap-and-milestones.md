@@ -202,7 +202,7 @@
 |---|---|---|---|
 | M0 | ✅ | 2026-08-08 | Tailwind v4 CSS-first 토큰 연결로 `docs/04` §2.3 수정. Pretendard는 devDependency + `next/font/local` self-host. |
 | M1 | ⬜ | | |
-| M2 | ⬜ | | |
+| M2 | 🟨 | | 2026-08-08: 사용자 요청으로 착수 순서를 앞당김. Firebase 프로젝트 연결 + client/admin SDK 초기화(`src/lib/firebase/`) + `.env.local` 실값 반영 완료. 로그인/온보딩/세션/Rules는 아직. |
 | M3 | ⬜ | | |
 | M4 | ⬜ | | |
 | M5 | ⬜ | | |
