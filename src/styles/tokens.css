@@ -1,0 +1,149 @@
+/**
+ * 디자인 토큰 — docs/04-design-system.md §2
+ * 색은 의미 토큰(semantic)으로만 사용한다. 컴포넌트에서 hex를 직접 쓰지 않는다.
+ * 기본 팔레트: basalt (light). 팔레트는 [data-palette], 모드는 .dark 클래스로 전환된다.
+ */
+
+:root {
+  /* 상태 (팔레트와 무관하게 고정) */
+  --success: #2fa36b;
+  --warning: #f2b441;
+  --danger: #e5484d;
+  --info: #3b82f6;
+
+  /* 등급 (팔레트와 무관하게 고정) */
+  --tier-s: #2fa36b;
+  --tier-a: #e5484d;
+  --tier-b: #f2b441;
+  --tier-c: #4caf6d;
+}
+
+/* --- basalt (기본값) --- */
+:root,
+[data-palette='basalt'] {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --surface-2: #f4f2ef;
+  --surface-raised: #ffffff;
+  --text: #17140f;
+  --text-muted: #6b655c;
+  --text-faint: #a8a29a;
+  --border: #e7e3dc;
+  --border-strong: #d5cfc5;
+  --accent: #d4801f;
+  --accent-soft: rgba(212, 128, 31, 0.12);
+  --accent-ring: rgba(212, 128, 31, 0.35);
+  --text-on-accent: #ffffff;
+}
+.dark[data-palette='basalt'],
+.dark {
+  --bg: #0b0a09;
+  --surface: #16130f;
+  --surface-2: #201b15;
+  --surface-raised: #221d17;
+  --text: #f5f1ea;
+  --text-muted: #a79e92;
+  --text-faint: #6e655b;
+  --border: #2a241d;
+  --border-strong: #4a3f32;
+  --accent: #f0a03c;
+  --accent-soft: rgba(240, 160, 60, 0.14);
+  --accent-ring: rgba(240, 160, 60, 0.45);
+  --text-on-accent: #1a1200;
+}
+
+/* --- gyul (감귤) --- */
+[data-palette='gyul'] {
+  --bg: #f7f1e7;
+  --surface: #fffdf9;
+  --surface-2: #f0e7da;
+  --surface-raised: #fffdf9;
+  --text: #2a1d12;
+  --text-muted: #7a6a58;
+  --text-faint: #b0a08c;
+  --border: #e4d8c6;
+  --border-strong: #cdbba1;
+  --accent: #e07a2f;
+  --accent-soft: rgba(224, 122, 47, 0.12);
+  --accent-ring: rgba(224, 122, 47, 0.35);
+  --text-on-accent: #ffffff;
+}
+.dark[data-palette='gyul'] {
+  --bg: #1a100a;
+  --surface: #241609;
+  --surface-2: #33200f;
+  --surface-raised: #2c1b0d;
+  --text: #f6eadc;
+  --text-muted: #b49a80;
+  --text-faint: #7a6450;
+  --border: #3b2715;
+  --border-strong: #6a4622;
+  --accent: #f3a45a;
+  --accent-soft: rgba(243, 164, 90, 0.14);
+  --accent-ring: rgba(243, 164, 90, 0.45);
+  --text-on-accent: #1a1000;
+}
+
+/* --- gotjawal (곶자왈) --- */
+[data-palette='gotjawal'] {
+  --bg: #f3f8f3;
+  --surface: #ffffff;
+  --surface-2: #e8f2e9;
+  --surface-raised: #ffffff;
+  --text: #12211a;
+  --text-muted: #5c7064;
+  --text-faint: #9aab9f;
+  --border: #d8e6da;
+  --border-strong: #b4cdb9;
+  --accent: #2e9e63;
+  --accent-soft: rgba(46, 158, 99, 0.12);
+  --accent-ring: rgba(46, 158, 99, 0.32);
+  --text-on-accent: #ffffff;
+}
+.dark[data-palette='gotjawal'] {
+  --bg: #08120c;
+  --surface: #101e16;
+  --surface-2: #172b1e;
+  --surface-raised: #172b1e;
+  --text: #e9f3eb;
+  --text-muted: #8fa795;
+  --text-faint: #5d7264;
+  --border: #1e3527;
+  --border-strong: #2f5c40;
+  --accent: #4fd18b;
+  --accent-soft: rgba(79, 209, 139, 0.14);
+  --accent-ring: rgba(79, 209, 139, 0.4);
+  --text-on-accent: #05180d;
+}
+
+/* --- badang (바당) --- */
+[data-palette='badang'] {
+  --bg: #f5f5fb;
+  --surface: #ffffff;
+  --surface-2: #ececf7;
+  --surface-raised: #ffffff;
+  --text: #14152b;
+  --text-muted: #5f6280;
+  --text-faint: #9b9db5;
+  --border: #e0e0ef;
+  --border-strong: #c2c3e0;
+  --accent: #5b4bd6;
+  --accent-soft: rgba(91, 75, 214, 0.1);
+  --accent-ring: rgba(91, 75, 214, 0.3);
+  --text-on-accent: #ffffff;
+}
+.dark[data-palette='badang'] {
+  --bg: #090b1a;
+  --surface: #121531;
+  --surface-2: #1b2044;
+  --surface-raised: #1b2044;
+  --text: #ecedf8;
+  --text-muted: #969ac0;
+  --text-faint: #64688c;
+  --border: #232852;
+  --border-strong: #3b4288;
+  --accent: #8b7cf6;
+  --accent-soft: rgba(139, 124, 246, 0.16);
+  --accent-ring: rgba(139, 124, 246, 0.45);
+  --text-on-accent: #0b0820;
+}
