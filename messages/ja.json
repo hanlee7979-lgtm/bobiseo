@@ -8,7 +8,15 @@
     "search": "검색",
     "close": "닫기",
     "retry": "다시 시도",
-    "loading": "불러오는 중"
+    "loading": "불러오는 중",
+    "previous": "이전",
+    "next": "다음"
+  },
+  "category": {
+    "restaurant": "음식점",
+    "cafe": "카페",
+    "salon": "미용실",
+    "farm": "농부"
   },
   "nav": {
     "home": "홈",
@@ -138,9 +146,12 @@
   },
   "consumer": {
     "brand": "LOCAL HERO",
+    "recommendedStores": "추천 매장",
+    "favoriteAria": "{name} 찜하기",
     "todayFresh": "오늘의 신선한 제주 직거래",
     "radius": "반경 {km}km",
     "discount": "{rate}% 할인",
+    "discountLabel": "할인",
     "signature": "시그니처",
     "hours": "영업시간",
     "reservationRequired": "예약필수"

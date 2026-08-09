@@ -20,7 +20,11 @@ export default function LoginPage() {
   const [error, setError] = useState<'popupBlocked' | 'network' | null>(null)
   const [pending, setPending] = useState(false)
 
-  function goNext() {
+  function goNext(needsOnboarding: boolean) {
+    if (needsOnboarding) {
+      router.replace(`/${params.locale}/onboarding`)
+      return
+    }
     router.replace(searchParams.get('next') || `/${params.locale}`)
   }
 
@@ -28,12 +32,13 @@ export default function LoginPage() {
     const result = await getRedirectResult(auth)
     if (!result) return false
     const idToken = await result.user.getIdToken()
-    await fetch('/api/session', {
+    const res = await fetch('/api/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idToken }),
     })
-    goNext()
+    const { needsOnboarding } = await res.json()
+    goNext(needsOnboarding)
     return true
   }
 
@@ -42,9 +47,9 @@ export default function LoginPage() {
     setPending(true)
     try {
       if (await completeRedirectSignIn()) return
-      const cred = await signInWithGoogle()
-      if (!cred) return // signInWithRedirect 폴백 진행 중 — 페이지가 곧 이동한다
-      goNext()
+      const result = await signInWithGoogle()
+      if (!result) return // signInWithRedirect 폴백 진행 중 — 페이지가 곧 이동한다
+      goNext(result.needsOnboarding)
     } catch (err) {
       const code = (err as { code?: string }).code ?? ''
       setError(ERROR_KEYS[code] ?? 'network')

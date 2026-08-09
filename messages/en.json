@@ -8,7 +8,15 @@
     "search": "Search",
     "close": "Close",
     "retry": "Retry",
-    "loading": "Loading"
+    "loading": "Loading",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "category": {
+    "restaurant": "Restaurant",
+    "cafe": "Cafe",
+    "salon": "Salon",
+    "farm": "Farm"
   },
   "nav": {
     "home": "Home",
@@ -138,9 +146,12 @@
   },
   "consumer": {
     "brand": "LOCAL HERO",
+    "recommendedStores": "Recommended stores",
+    "favoriteAria": "Add {name} to favorites",
     "todayFresh": "Fresh from Jeju today",
     "radius": "{km}km radius",
     "discount": "{rate}% off",
+    "discountLabel": "Off",
     "signature": "Signature",
     "hours": "Hours",
     "reservationRequired": "Reservation required"

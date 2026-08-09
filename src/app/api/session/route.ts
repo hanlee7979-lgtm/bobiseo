@@ -13,6 +13,8 @@ export async function POST(req: Request) {
 
   const ref = adminDb.collection('users').doc(decoded.uid)
   const snap = await ref.get()
+  let role: string | null = null
+
   if (!snap.exists) {
     await ref.set({
       uid: decoded.uid,
@@ -32,6 +34,8 @@ export async function POST(req: Request) {
       deletedAt: null,
     })
     await applyBootstrapAdmin(decoded.uid, decoded.email)
+  } else {
+    role = (snap.data()?.role as string | null) ?? null
   }
 
   const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn: FIVE_DAYS_MS })
@@ -44,7 +48,7 @@ export async function POST(req: Request) {
     maxAge: FIVE_DAYS_MS / 1000,
   })
 
-  return Response.json({ ok: true })
+  return Response.json({ ok: true, needsOnboarding: role === null })
 }
 
 export async function DELETE() {
